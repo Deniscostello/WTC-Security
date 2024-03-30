@@ -4,6 +4,10 @@ package ie.atu.wtcsecurity.controllers;
 import ie.atu.wtcsecurity.models.ERole;
 import ie.atu.wtcsecurity.models.Role;
 import ie.atu.wtcsecurity.models.User;
+import ie.atu.wtcsecurity.payload.request.LoginRequest;
+import ie.atu.wtcsecurity.payload.request.SignupRequest;
+import ie.atu.wtcsecurity.payload.response.MessageResponse;
+import ie.atu.wtcsecurity.payload.response.UserInfoResponse;
 import ie.atu.wtcsecurity.repository.RoleRepository;
 import ie.atu.wtcsecurity.repository.UserRepository;
 import ie.atu.wtcsecurity.security.jwt.JwtUtils;
@@ -118,6 +122,7 @@ public class AuthController {
                 }
             });
         }
+
         user.setRoles(roles);
         userRepository.save(user);
 
