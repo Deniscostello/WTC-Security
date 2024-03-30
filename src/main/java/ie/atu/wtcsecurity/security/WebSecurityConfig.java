@@ -1,5 +1,8 @@
 package ie.atu.wtcsecurity.security;
 
+import ie.atu.wtcsecurity.security.jwt.AuthEntryPointJwt;
+import ie.atu.wtcsecurity.security.jwt.AuthTokenFilter;
+import ie.atu.wtcsecurity.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
