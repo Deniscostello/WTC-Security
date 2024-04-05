@@ -4,7 +4,8 @@ import lombok.Data;
 
 import java.util.List;
 
-public class UserInfoResponse {
+public class
+UserInfoResponse {
 
     private String id;
     private String username;
