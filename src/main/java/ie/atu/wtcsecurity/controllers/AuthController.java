@@ -123,7 +123,7 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
-        CompletableFuture<User> userFuture = CompletableFuture.supplyAsync(() -> {userRepository.save(user); return user;});
+//        CompletableFuture<User> userFuture = CompletableFuture.supplyAsync(() -> {userRepository.save(user); return user;});
 
         CompletableFuture<String> comfirmEmailFuture = CompletableFuture.supplyAsync(()-> {
             String emailVer = emailClient.emailDetails(user);
