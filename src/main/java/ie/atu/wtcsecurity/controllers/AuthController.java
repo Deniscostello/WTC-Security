@@ -1,6 +1,7 @@
 package ie.atu.wtcsecurity.controllers;
 
 
+import ie.atu.wtcsecurity.email.EmailClient;
 import ie.atu.wtcsecurity.models.ERole;
 import ie.atu.wtcsecurity.models.Role;
 import ie.atu.wtcsecurity.models.User;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @RestController
@@ -47,6 +49,9 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    @Autowired
+    EmailClient emailClient;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -118,8 +123,16 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
+//        CompletableFuture<User> userFuture = CompletableFuture.supplyAsync(() -> {userRepository.save(user); return user;});
+
+        CompletableFuture<String> comfirmEmailFuture = CompletableFuture.supplyAsync(()-> {
+            String emailVer = emailClient.emailDetails(user);
+            return emailVer;
+        });
         userRepository.save(user);
+        System.out.println(comfirmEmailFuture);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
     }
 
     @GetMapping("/getUser")
