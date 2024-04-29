@@ -31,6 +31,13 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+/*
+The following code for authentication is based on a tutorial
+"Spring Boot Token based Authentication with Spring Security & JWT"
+https://www.bezkoder.com/spring-boot-jwt-authentication/
+with additional features incorporated and modifications made for my project demands
+*/
+
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
