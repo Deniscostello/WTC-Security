@@ -1,0 +1,56 @@
+version: "3"
+services:
+  security-service:
+    image: security-image:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - wtc-network
+
+
+  add-food-service:
+    image: add-food-image:latest
+    ports:
+      - "8082:8082"
+    networks:
+      - wtc-network
+
+
+
+  email-service:
+    image: email-image:latest
+    ports:
+      - "8086:8086"
+    networks:
+      - wtc-network
+
+
+  get-food-service:
+    image: getfood-image:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - wtc-network
+
+
+
+  recipes-service:
+    image: recipes-service:latest
+    ports:
+      - "8084:8084"
+
+    networks:
+      - wtc-network
+
+  wtc-frontend-service:
+    image: wtc-project-frontend:latest
+    ports:
+      - "3000:3000"
+
+    networks:
+      - wtc-network
+
+
+networks:
+  wtc-network:
+    driver: bridge
